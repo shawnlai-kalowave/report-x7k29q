@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>谷歌停投对大盘影响 · 数据分析报告</title>
+<style>
+  :root{
+    --bg:#f5f6f8; --card:#ffffff; --ink:#1f2329; --sub:#646a73;
+    --line:#e6e8eb; --brand:#2b5cff; --red:#e74c3c; --green:#27ae60;
+    --amber:#f39c12; --blue:#3498db; --redbg:#fff1f0; --greenbg:#f0faf4;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+    line-height:1.7;font-size:15px;}
+  .wrap{max-width:960px;margin:0 auto;padding:40px 24px 80px;}
+  header.cover{background:linear-gradient(135deg,#2b5cff,#1e3a8a);color:#fff;
+    border-radius:16px;padding:40px 36px;margin-bottom:28px;
+    box-shadow:0 8px 30px rgba(43,92,255,.18);}
+  header.cover h1{margin:0 0 14px;font-size:28px;letter-spacing:.5px;}
+  header.cover .meta{font-size:13.5px;opacity:.92;line-height:2;}
+  header.cover .meta b{font-weight:600;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:28px 30px;margin-bottom:24px;box-shadow:0 2px 12px rgba(0,0,0,.03);}
+  h2.sec{font-size:21px;margin:0 0 20px;padding-left:14px;
+    border-left:5px solid var(--brand);}
+  h3{font-size:16.5px;margin:26px 0 12px;color:var(--ink);}
+  h3:first-of-type{margin-top:6px;}
+  p{margin:10px 0;color:var(--ink);}
+  .muted{color:var(--sub);font-size:13px;}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;}
+  th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:right;}
+  th:first-child,td:first-child{text-align:left;}
+  thead th{background:#f0f3ff;color:#33415c;font-weight:600;border-bottom:2px solid #d6e0ff;}
+  tbody tr:hover{background:#fafbff;}
+  .sub-row td:first-child{padding-left:26px;color:var(--sub);}
+  .up{color:var(--green);font-weight:600;}
+  .down{color:var(--red);font-weight:600;}
+  .flat{color:var(--sub);font-weight:600;}
+  .chart{margin:18px 0;text-align:center;}
+  .chart svg{max-width:100%;height:auto;border:1px solid var(--line);border-radius:10px;background:#fff;}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:6px 0 4px;}
+  .kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 14px;text-align:center;}
+  .kpi .v{font-size:24px;font-weight:700;margin:4px 0;}
+  .kpi .l{font-size:12.5px;color:var(--sub);}
+  .kpi.red .v{color:var(--red);} .kpi.green .v{color:var(--green);}
+  .concl{border:1px solid var(--line);border-left:5px solid var(--brand);
+    border-radius:10px;padding:16px 20px;margin:16px 0;background:#fbfcff;}
+  .concl h3{margin:0 0 8px;color:var(--brand);}
+  .tag{display:inline-block;font-size:11px;padding:2px 9px;border-radius:20px;
+    background:#eef2ff;color:#2b5cff;margin-left:8px;vertical-align:middle;}
+  .pri-high{background:var(--redbg);color:#c0392b;}
+  .pri-mid{background:#fff7e6;color:#b9770e;}
+  ul{margin:8px 0;padding-left:22px;} li{margin:6px 0;}
+  .note{background:#fffaf0;border:1px dashed #f0d9a8;border-radius:10px;
+    padding:14px 18px;font-size:13.5px;color:#7a5b16;}
+  .calc{background:#f0faf4;border:1px solid #cdebd9;border-radius:10px;
+    padding:14px 18px;font-size:13.5px;color:#1e6b41;margin:12px 0;}
+  footer{text-align:center;color:var(--sub);font-size:12.5px;margin-top:30px;}
+  @media(max-width:680px){.kpis{grid-template-columns:repeat(2,1fr);}}
+  @media print{body{background:#fff;}.card,header.cover{box-shadow:none;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="cover">
+    <h1>谷歌停投对大盘影响 · 数据分析报告</h1>
+    <div class="meta">
+      <div><b>分析周期：</b>封号前 8 天（5/27–6/3） vs 封号期间 8 天（6/4–6/11）</div>
+      <div><b>数据来源：</b>《谷歌停投期间的数据表现.xlsx》（Sheet1 消耗统计、Sheet2 数据趋势）</div>
+      <div><b>口径说明：</b>除注册/付费规模为区间合计外，消耗与付费均为<b>日均值</b>对比</div>
+    </div>
+  </header>
+
+  <!-- 核心KPI -->
+  <section class="card">
+    <h2 class="sec">核心结论速览</h2>
+    <div class="kpis">
+      <div class="kpi red"><div class="l">谷歌消耗</div><div class="v">−80.1%</div><div class="l">1,971 → 392</div></div>
+      <div class="kpi red"><div class="l">谷歌带来的注册</div><div class="v">−86.8%</div><div class="l">1,769 → 234</div></div>
+      <div class="kpi green"><div class="l">大盘总注册</div><div class="v">−6.6%</div><div class="l">4,698 → 4,390</div></div>
+      <div class="kpi green"><div class="l">注册新增付费金额</div><div class="v">+20.5%</div><div class="l">3,847 → 4,637</div></div>
+    </div>
+    <p style="margin-top:14px;font-size:15.5px;">
+      <b>一句话结论：</b>谷歌自身数据近乎"腰斩再腰斩"（消耗 −80%、带来的注册 −87%、付费 −80%），但大盘几乎没伤筋动骨——
+      <b class="down">总注册仅降 6.6%</b>，<b class="up">注册新增付费金额反而升 20.5%</b>。
+    </p>
+    <p class="muted">注：① "注册新增付费金额"指投放新增注册用户带来的新付费，并非账户总付费；② 该付费指标本身波动较大、不够稳定（详见 1.4 每日趋势），+20.5% 含波动影响，不宜过度解读；③ 总注册 −6.6% 中含其他平台加投的影响，剔除后实际影响更小（详见结论二）。</p>
+  </section>
+
+  <!-- 模块一：背景梳理 -->
+  <section class="card">
+    <h2 class="sec">一、背景梳理</h2>
+
+    <h3>1.1 事件背景</h3>
+    <p>谷歌广告账户于 <b>6 月 4 日</b> 起停止投放（封号），持续约 8 天（6/4–6/11）。为评估此次停投对整体业务大盘的影响，我们将<b>停投期间 8 天</b>与<b>停投前 8 天</b>做等长对照，重点观察 <b>消耗 / 注册 / 付费</b> 三类指标的变化。</p>
+
+    <h3>1.2 大盘整体表现（所有国家总计 · 日均）</h3>
+    <table>
+      <thead><tr><th>指标</th><th>封号前</th><th>封号期间</th><th>变化</th></tr></thead>
+      <tbody>
+        <tr><td>投放平台总消耗</td><td>3,380.1</td><td>2,381.3</td><td class="down">−29.5%</td></tr>
+        <tr class="sub-row"><td>├ 谷歌消耗</td><td>1,971.0</td><td>392.3</td><td class="down">−80.1%</td></tr>
+        <tr class="sub-row"><td>└ 其他平台消耗</td><td>1,409.1</td><td>1,989.0</td><td class="up">+41.2%</td></tr>
+        <tr><td>总注册规模</td><td>4,698</td><td>4,390</td><td class="down">−6.6%</td></tr>
+        <tr class="sub-row"><td>├ 谷歌带来的注册</td><td>1,769</td><td>234</td><td class="down">−86.8%</td></tr>
+        <tr class="sub-row"><td>├ 其他平台注册</td><td>1,043</td><td>999</td><td class="flat">−4.2%</td></tr>
+        <tr class="sub-row"><td>└ tc_code 为空注册</td><td>1,868</td><td>3,142</td><td class="up">+68.2%</td></tr>
+        <tr><td>注册新增付费金额</td><td>3,846.7</td><td>4,637.2</td><td class="up">+20.5%</td></tr>
+        <tr class="sub-row"><td>├ 谷歌付费</td><td>1,457.0</td><td>298.8</td><td class="down">−79.5%</td></tr>
+        <tr class="sub-row"><td>├ 其他平台付费</td><td>672.5</td><td>1,226.1</td><td class="up">+82.3%</td></tr>
+        <tr class="sub-row"><td>└ tc_code 为空付费</td><td>1,717.2</td><td>3,112.3</td><td class="up">+81.2%</td></tr>
+      </tbody>
+    </table>
+    <p class="muted">数据对应 Sheet1「消耗统计」中"所有国家总计"行。</p>
+
+    <h3>1.3 分区域表现（日均）</h3>
+    <table>
+      <thead><tr><th>区域</th><th>谷歌消耗</th><th>其他平台消耗</th><th>总注册</th><th>注册新增付费</th></tr></thead>
+      <tbody>
+        <tr><td>欧美等美洲</td><td class="down">−66.5%</td><td class="up">+79.2%</td><td class="up">+11.6%</td><td class="up">+20.0%</td></tr>
+        <tr><td>东南亚等亚洲</td><td class="down">−98.3%</td><td class="flat">−2.0%</td><td class="down">−16.0%</td><td class="up">+20.9%</td></tr>
+      </tbody>
+    </table>
+    <p class="muted">关键差异：<b>欧美其他平台加投了（消耗 +79.2%）</b>，总注册不降反增；<b>东南亚其他平台消耗基本不变（−2.0%）</b>，更接近一次干净的 A/B 实验。该差异是下文结论二的分析基础。</p>
+
+    <h3>1.4 趋势走势（5/15–6/15）</h3>
+    <p>谷歌消耗在 6/4 断崖式下跌，其他平台快速补位：</p>
+    <div class="chart">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="360" font-family="PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="900" height="360" fill="white"/>
+<text x="60" y="20" font-size="15" font-weight="bold" fill="#222">图1  每日投放消耗趋势（美元）：谷歌停投后由其他平台承接</text>
+<rect x="563.2" y="30" width="176.1" height="290" fill="#ffe0e0" opacity="0.6"/>
+<text x="651.3" y="44" font-size="11" fill="#c0392b" text-anchor="middle">封号期间 6/4-6/11</text>
+<line x1="60" y1="320.0" x2="840" y2="320.0" stroke="#eee"/>
+<text x="54" y="324.0" font-size="10" fill="#888" text-anchor="end">0</text>
+<line x1="60" y1="247.5" x2="840" y2="247.5" stroke="#eee"/>
+<text x="54" y="251.5" font-size="10" fill="#888" text-anchor="end">1250</text>
+<line x1="60" y1="175.0" x2="840" y2="175.0" stroke="#eee"/>
+<text x="54" y="179.0" font-size="10" fill="#888" text-anchor="end">2500</text>
+<line x1="60" y1="102.5" x2="840" y2="102.5" stroke="#eee"/>
+<text x="54" y="106.5" font-size="10" fill="#888" text-anchor="end">3750</text>
+<line x1="60" y1="30.0" x2="840" y2="30.0" stroke="#eee"/>
+<text x="54" y="34.0" font-size="10" fill="#888" text-anchor="end">5000</text>
+<text x="60.0" y="336" font-size="9" fill="#888" text-anchor="middle">5/15</text>
+<text x="135.5" y="336" font-size="9" fill="#888" text-anchor="middle">5/18</text>
+<text x="211.0" y="336" font-size="9" fill="#888" text-anchor="middle">5/21</text>
+<text x="286.5" y="336" font-size="9" fill="#888" text-anchor="middle">5/24</text>
+<text x="361.9" y="336" font-size="9" fill="#888" text-anchor="middle">5/27</text>
+<text x="437.4" y="336" font-size="9" fill="#888" text-anchor="middle">5/30</text>
+<text x="512.9" y="336" font-size="9" fill="#888" text-anchor="middle">6/2</text>
+<text x="588.4" y="336" font-size="9" fill="#888" text-anchor="middle">6/5</text>
+<text x="663.9" y="336" font-size="9" fill="#888" text-anchor="middle">6/8</text>
+<text x="739.4" y="336" font-size="9" fill="#888" text-anchor="middle">6/11</text>
+<text x="814.8" y="336" font-size="9" fill="#888" text-anchor="middle">6/14</text>
+<polyline points="60.0,177.0 85.2,188.1 110.3,168.3 135.5,146.2 160.6,137.2 185.8,187.1 211.0,203.1 236.1,214.2 261.3,228.6 286.5,233.6 311.6,200.5 336.8,199.5 361.9,191.1 387.1,177.3 412.3,211.1 437.4,226.2 462.6,235.1 487.7,189.5 512.9,145.0 538.1,270.1 563.2,313.2 588.4,309.8 613.5,303.1 638.7,305.0 663.9,289.5 689.0,286.5 714.2,289.3 739.4,281.6 764.5,256.8 789.7,229.1 814.8,217.2 840.0,184.6" fill="none" stroke="#e74c3c" stroke-width="2.2"/>
+<polyline points="60.0,263.8 85.2,269.1 110.3,306.9 135.5,305.9 160.6,305.1 185.8,301.9 211.0,257.4 236.1,261.6 261.3,267.1 286.5,270.5 311.6,268.4 336.8,297.2 361.9,256.3 387.1,258.1 412.3,257.8 437.4,259.6 462.6,246.2 487.7,247.2 512.9,240.1 538.1,230.7 563.2,223.6 588.4,203.3 613.5,225.5 638.7,242.9 663.9,192.6 689.0,213.3 714.2,201.5 739.4,204.3 764.5,233.7 789.7,305.4 814.8,268.1 840.0,303.6" fill="none" stroke="#3498db" stroke-width="2.2"/>
+<rect x="70" y="344" width="12" height="12" fill="#e74c3c"/>
+<text x="86" y="354" font-size="11" fill="#333">谷歌消耗</text>
+<rect x="166" y="344" width="12" height="12" fill="#3498db"/>
+<text x="182" y="354" font-size="11" fill="#333">其他平台消耗</text>
+</svg>
+    </div>
+    <p>总注册在整个停投期间保持平稳；新增付费金额则上下波动明显、本身就不够稳定：</p>
+    <div class="chart">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="360" font-family="PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="900" height="360" fill="white"/>
+<text x="60" y="20" font-size="15" font-weight="bold" fill="#222">图2  每日总注册数 / 新增付费金额趋势：注册平稳，付费波动较大</text>
+<rect x="563.2" y="30" width="176.1" height="290" fill="#ffe0e0" opacity="0.6"/>
+<text x="651.3" y="44" font-size="11" fill="#c0392b" text-anchor="middle">封号期间 6/4-6/11</text>
+<line x1="60" y1="320.0" x2="840" y2="320.0" stroke="#eee"/>
+<text x="54" y="324.0" font-size="10" fill="#888" text-anchor="end">0</text>
+<line x1="60" y1="247.5" x2="840" y2="247.5" stroke="#eee"/>
+<text x="54" y="251.5" font-size="10" fill="#888" text-anchor="end">2500</text>
+<line x1="60" y1="175.0" x2="840" y2="175.0" stroke="#eee"/>
+<text x="54" y="179.0" font-size="10" fill="#888" text-anchor="end">5000</text>
+<line x1="60" y1="102.5" x2="840" y2="102.5" stroke="#eee"/>
+<text x="54" y="106.5" font-size="10" fill="#888" text-anchor="end">7500</text>
+<line x1="60" y1="30.0" x2="840" y2="30.0" stroke="#eee"/>
+<text x="54" y="34.0" font-size="10" fill="#888" text-anchor="end">10000</text>
+<text x="60.0" y="336" font-size="9" fill="#888" text-anchor="middle">5/15</text>
+<text x="135.5" y="336" font-size="9" fill="#888" text-anchor="middle">5/18</text>
+<text x="211.0" y="336" font-size="9" fill="#888" text-anchor="middle">5/21</text>
+<text x="286.5" y="336" font-size="9" fill="#888" text-anchor="middle">5/24</text>
+<text x="361.9" y="336" font-size="9" fill="#888" text-anchor="middle">5/27</text>
+<text x="437.4" y="336" font-size="9" fill="#888" text-anchor="middle">5/30</text>
+<text x="512.9" y="336" font-size="9" fill="#888" text-anchor="middle">6/2</text>
+<text x="588.4" y="336" font-size="9" fill="#888" text-anchor="middle">6/5</text>
+<text x="663.9" y="336" font-size="9" fill="#888" text-anchor="middle">6/8</text>
+<text x="739.4" y="336" font-size="9" fill="#888" text-anchor="middle">6/11</text>
+<text x="814.8" y="336" font-size="9" fill="#888" text-anchor="middle">6/14</text>
+<polyline points="60.0,166.7 85.2,183.5 110.3,189.1 135.5,162.2 160.6,166.7 185.8,161.1 211.0,174.2 236.1,177.8 261.3,195.5 286.5,205.2 311.6,181.7 336.8,178.7 361.9,181.4 387.1,165.5 412.3,186.7 437.4,201.0 462.6,215.7 487.7,182.7 512.9,170.6 538.1,185.9 563.2,192.3 588.4,200.3 613.5,221.5 638.7,218.7 663.9,178.9 689.0,178.3 714.2,183.8 739.4,187.4 764.5,177.1 789.7,171.4 814.8,206.6 840.0,173.8" fill="none" stroke="#27ae60" stroke-width="2.2"/>
+<polyline points="60.0,153.9 85.2,254.9 110.3,267.4 135.5,140.4 160.6,176.4 185.8,236.0 211.0,206.7 236.1,174.7 261.3,249.7 286.5,284.7 311.6,258.2 336.8,238.1 361.9,275.3 387.1,238.7 412.3,260.6 437.4,252.0 462.6,281.7 487.7,220.4 512.9,224.6 538.1,273.2 563.2,186.2 588.4,220.0 613.5,239.6 638.7,267.9 663.9,234.5 689.0,238.6 714.2,229.9 739.4,192.7 764.5,260.5 789.7,241.2 814.8,270.7 840.0,223.4" fill="none" stroke="#f39c12" stroke-width="2.2"/>
+<rect x="70" y="344" width="12" height="12" fill="#27ae60"/>
+<text x="86" y="354" font-size="11" fill="#333">总注册数</text>
+<rect x="166" y="344" width="12" height="12" fill="#f39c12"/>
+<text x="182" y="354" font-size="11" fill="#333">新增付费金额</text>
+</svg>
+    </div>
+    <p class="muted">趋势同 Sheet2「数据趋势」图表一致；6/12 起谷歌消耗逐步恢复。</p>
+  </section>
+
+  <!-- 模块二：结论总结 -->
+  <section class="card">
+    <h2 class="sec">二、结论总结</h2>
+
+    <div class="concl">
+      <h3>结论 1：谷歌停投对大盘的实质冲击「远小于」其账面贡献</h3>
+      <p>谷歌自身消耗 −80%、带来的注册 −87%、付费 −80%。但放到大盘看：<b>总注册仅降 6.6%</b>（4,698→4,390），<b>注册新增付费金额不降反升 20.5%</b>（3,846.7→4,637.2）。谷歌损失的约 1,535 个/日注册，绝大部分被其他渠道与未归因流量补回，<b>净损失远没有谷歌账面数字那么大</b>。</p>
+      <p class="muted">需说明：新增付费金额本身波动较大（见 1.4 趋势图），+20.5% 含日常波动成分，应理解为"付费未受明显拖累"，而非"停投带来付费增长"。</p>
+    </div>
+
+    <div class="concl">
+      <h3>结论 2：分区域看（A/B 实验视角），谷歌停投对总注册的真实影响很小</h3>
+      <p><b>① 欧美——其他平台加投了，不是天然的 A/B 实验。</b>欧美其他平台消耗 +79.2%，由此多带来约 <b>+188 个/日</b>注册（113→301）；欧美总注册由 1,611 升至 1,798（+11.6%）。<b>若剔除这部分加投增量</b>（1,798 − 188 ≈ 1,610），欧美总注册与停投前的 1,611 <b>基本持平</b>——说明在欧美，谷歌停投的注册缺口被未归因/自然量回补，对总注册几乎没有净影响。</p>
+      <div class="calc">
+        测算：欧美 1,798（停投期间总注册） − 188（其他平台加投带来的增量注册） = <b>1,610 ≈ 1,611</b>（停投前总注册）→ 扣除加投后基本持平。
+      </div>
+      <p><b>② 东南亚——其他平台消耗基本不变（−2.0%），是一次接近标准的 A/B 实验。</b>该区域总注册 3,087→2,592（<b>−16.0%</b>）；谷歌流失的注册大部分被未归因流量回补，真实净损失有限。</p>
+      <p style="margin-top:10px;"><b>小结：</b>欧美（有加投，非天然 A/B）扣除加投后总注册持平；东南亚（无加投，标准 A/B）真实净损失有限。两个区域共同指向同一结论——<b>谷歌停投后总注册用户数基本不受实质影响</b>。</p>
+    </div>
+
+    <div class="concl">
+      <h3>结论 3：谷歌的「归因贡献」可能被明显高估</h3>
+      <p>停投后，<b>tc_code 为空（未归因）注册 +68%、付费 +81%</b> 大幅激增——原本应有归因记录的转化，大量落入了"未归因"。这说明此前归因口径，<b>把相当一部分自然量 / 交叉转化算在了谷歌头上</b>，谷歌的真实增量贡献被高估。后续应优先修复 tc_code 归因，以还原各渠道的真实贡献。</p>
+    </div>
+  </section>
+
+  <!-- 口径与风险 -->
+  <section class="card">
+    <h2 class="sec">三、口径与风险提示</h2>
+    <div class="note">
+      <ul style="margin:0;">
+        <li>本报告除注册/付费规模为区间合计外，消耗与付费对比均为<b>日均值</b>；</li>
+        <li>对照组为停投前 8 天，与停投期间 8 天等长，排除了周期长度差异；</li>
+        <li><b>新增付费金额本身波动较大、不够稳定</b>，停投期间的付费变化含日常波动成分，需结合每日趋势综合判断；</li>
+        <li><b>东南亚为无加投的标准 A/B 区域，欧美因其他平台加投并非天然 A/B</b>，两者结论需区分看待；</li>
+        <li><b>tc_code 为空大幅上升</b>意味着归因噪声增大，分平台贡献精确度下降，相关结论应在归因修复后复核。</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>报告生成日期：2026-06-17 ｜ 数据口径：日均值对照（8 天 vs 8 天）</footer>
+</div>
+</body>
+</html>
