@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>美国tc非空最近8天付费提升分析</title>
+<style>
+:root{--bg:#f6f7f9;--paper:#fff;--ink:#18212f;--muted:#667085;--line:#e6e9ee;--blue:#315efb;--soft:#eef2ff;--green:#067647}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;line-height:1.72;font-size:15px}
+.page{max-width:1120px;margin:32px auto 72px;background:var(--paper);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.hero{padding:44px 56px 36px;background:#172033;color:#fff}.hero h1{margin:0 0 12px;font-size:30px}.hero p{color:#c9d2e3;max-width:850px}
+.pills{display:flex;gap:8px;flex-wrap:wrap}.pill{border:1px solid #43506a;border-radius:999px;padding:5px 11px;font-size:12px}
+.content{padding:40px 56px 60px}h2{font-size:21px;margin:38px 0 13px;border-top:1px solid var(--line);padding-top:18px}h3{font-size:17px;margin-top:25px}
+.lead{font-size:18px;background:var(--soft);border-left:4px solid var(--blue);padding:17px 20px;border-radius:8px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0}.kpi{border:1px solid var(--line);border-radius:10px;padding:15px}.kpi b{display:block;font-size:21px;color:var(--blue)}.kpi span{color:var(--muted);font-size:12px}
+table{width:100%;border-collapse:collapse;border:1px solid var(--line);margin:15px 0}th{background:#f3f5f8}th,td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left}
+.figure{margin:20px 0;border:1px solid var(--line);border-radius:12px;overflow:hidden}.figure img{display:block;width:100%}.figure figcaption{padding:9px 12px;color:var(--muted);font-size:12px;border-top:1px solid var(--line)}
+.good{color:var(--green);font-weight:650}code{background:#f2f4f7;padding:2px 5px;border-radius:4px}li{margin:6px 0}.footer{padding:18px 56px;color:var(--muted);border-top:1px solid var(--line);font-size:12px}
+@media(max-width:760px){.page{margin:0;border:0;border-radius:0}.hero,.content{padding-left:22px;padding-right:22px}.kpis{grid-template-columns:1fr 1fr}}
+</style></head><body><main class="page">
+<header class="hero"><div>Country Growth Analysis · Task 003</div><h1>美国 tc 非空注册用户最近8天付费提升分析</h1>
+<p>改善真实存在，核心驱动是 Google 品牌广告 tc kdgausbrand 的付费转化率翻倍，而不是所有tc普遍上涨。</p>
+<div class="pills"><span class="pill">最近8天 08/13–08/20</span><span class="pill">对照 08/05–08/12</span><span class="pill">按注册日归因</span><span class="pill">等观察窗 D0–D7</span></div></header>
+<article class="content"><p class="lead"><b>结论：</b>最近8天付费率 3.53%→5.57%（p=0.0074），金额 $4,575→$8,199；提升几乎全部来自 <code>kdgausbrand</code>。可以判断广告大概率做对了，但具体是素材、关键词、受众还是落地页，需要结合 Google Ads 变更记录确认。</p>
+<div class="kpis"><div class="kpi"><b>5.57%</b><span>最近8天付费率（前期3.53%）</span></div><div class="kpi"><b>$8,199</b><span>最近8天净付费（+79.2%）</span></div><div class="kpi"><b>84.2%</b><span>新增付费人数由brand贡献</span></div><div class="kpi"><b>p=0.001</b><span>kdgausbrand付费率差异</span></div></div>
+<h2>1. 公平比较后，现象成立</h2>
+<p>前8天注册者天然多出8天付费机会，因此使用配对等观察窗：两段第1天注册者均观察7天，随后依次降到D0。</p>
+<table><thead><tr><th>指标</th><th>前8天</th><th>最近8天</th><th>变化</th></tr></thead><tbody>
+<tr><td>注册人数</td><td>1,443</td><td>1,597</td><td>+10.7%</td></tr><tr><td>付费人数</td><td>51</td><td>89</td><td>+74.5%</td></tr>
+<tr><td>付费率</td><td>3.53%</td><td class="good">5.57%</td><td>+2.04pp</td></tr><tr><td>净付费金额</td><td>$4,574.56</td><td class="good">$8,198.63</td><td>+79.2%</td></tr>
+<tr><td>注册ARPU</td><td>$3.17</td><td>$5.13</td><td>+61.9%</td></tr></tbody></table>
+<figure class="figure"><img src="images/01-period-comparison.png"><figcaption>两期注册、付费率和金额对比</figcaption></figure>
+<h2>2. 超出7月以来正常波动</h2><p>截至8/12以前的36个滚动8天窗口，整体付费率范围为2.60%–3.90%；本期5.57%高于全部历史窗口。滚动窗口重叠，此处用于判断近期常态，正式显著性使用两期用户级检验。</p>
+<figure class="figure"><img src="images/02-rolling-pay-rate.png"><figcaption>付费率抬升与kdgausbrand同步</figcaption></figure>
+<figure class="figure"><img src="images/03-rolling-revenue.png"><figcaption>金额增长同样由品牌tc主导</figcaption></figure>
+<h2>3. 具体是谁带来的</h2>
+<table><thead><tr><th>tc</th><th>前8天</th><th>最近8天</th><th>判断</th></tr></thead><tbody>
+<tr><td><code>kdgausbrand</code></td><td>854人 / 3.40% / $2,162</td><td>887人 / 6.88% / $5,808</td><td class="good">核心驱动，p=0.001</td></tr>
+<tr><td><code>kdgauscp</code></td><td>69人 / 2.90% / $200</td><td>145人 / 7.59% / $715</td><td>放量+改善，p=0.18</td></tr>
+<tr><td>排除brand后的全部tc</td><td>589人 / 3.74% / $2,412</td><td>710人 / 3.94% / $2,391</td><td>基本不变，p=0.846</td></tr></tbody></table>
+<figure class="figure"><img src="images/04-tc-contribution.png"><figcaption>金额变化贡献：kdgausbrand单独解释全部净增长</figcaption></figure>
+<h2>4. 广告做对了什么</h2><p>提升集中于 Google campaign <code>23910979100</code>、adgroup <code>197770302672</code>、content <code>811882949516</code>。该组合注册量仅+3.3%，付费率却从3.29%升至6.60%，金额从$2,059升至$5,137，说明关键不是单纯买更多量，而是同一广告组合的用户质量/转化改善。</p>
+<p><code>kdgauscp</code> 对应 campaign <code>23919487601</code>，注册66→141、付费率3.03%→7.09%，是第二个积极信号，但样本暂不足以确认。</p>
+<h2>5. 排除偶然因素</h2><ul><li>整体付费率差异p=0.0074，brand单独p=0.0010。</li><li>排除brand后其他tc无显著改善，说明不是市场/产品共同抬升。</li><li>存在一笔chelotts $899.1，但单用户金额封顶$150后，总金额仍+64.7%，不是鲸鱼订单假象。</li><li>建议保持品牌广告组合稳定，再观察1–2个完整8天窗口；同时核对Google Ads在8/13附近的关键词、素材、受众、设备和落地页变更。</li></ul>
+</article><div class="footer">Source: Athena kalo_data_website · 报告生成日 2026-08-21</div></main></body></html>
