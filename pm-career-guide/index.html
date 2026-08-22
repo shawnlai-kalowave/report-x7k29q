@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>转行产品经理 · 系统操作手册</title>
+  <style>
+    :root {
+      --bg: #f8f9fc;
+      --surface: #ffffff;
+      --text: #1a1d26;
+      --text-secondary: #5c6370;
+      --accent: #2563eb;
+      --accent-light: #eff6ff;
+      --accent-dark: #1d4ed8;
+      --success: #059669;
+      --success-light: #ecfdf5;
+      --warning: #d97706;
+      --warning-light: #fffbeb;
+      --border: #e5e7eb;
+      --shadow: 0 1px 3px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.04);
+      --radius: 12px;
+      --font: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      font-size: 15px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%);
+      color: #fff;
+      padding: 48px 24px 56px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero .subtitle {
+      font-size: 1rem;
+      opacity: .92;
+      max-width: 640px;
+      margin: 0 auto 20px;
+    }
+
+    .hero .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .hero .tag {
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.25);
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: .85rem;
+    }
+
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+
+    .toc {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px 28px;
+      margin-top: -32px;
+      margin-bottom: 36px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .toc h2 {
+      font-size: .95rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 14px;
+    }
+
+    .toc ol {
+      columns: 2;
+      column-gap: 32px;
+      padding-left: 20px;
+    }
+
+    .toc li { margin-bottom: 6px; }
+    .toc a { color: var(--accent); text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+
+    section {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px 32px;
+      margin-bottom: 24px;
+    }
+
+    section h2 {
+      font-size: 1.35rem;
+      color: var(--text);
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent-light);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    section h2 .num {
+      background: var(--accent);
+      color: #fff;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .85rem;
+      flex-shrink: 0;
+    }
+
+    section h3 {
+      font-size: 1.05rem;
+      margin: 20px 0 10px;
+      color: var(--accent-dark);
+    }
+
+    p { margin-bottom: 12px; color: var(--text); }
+    ul, ol { margin: 0 0 14px 22px; }
+    li { margin-bottom: 6px; }
+
+    .callout {
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 16px 0;
+      border-left: 4px solid;
+    }
+
+    .callout-blue {
+      background: var(--accent-light);
+      border-color: var(--accent);
+    }
+
+    .callout-green {
+      background: var(--success-light);
+      border-color: var(--success);
+    }
+
+    .callout-amber {
+      background: var(--warning-light);
+      border-color: var(--warning);
+    }
+
+    .callout strong { display: block; margin-bottom: 4px; }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .9rem;
+    }
+
+    th {
+      background: #f1f5f9;
+      text-align: left;
+      padding: 12px 14px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 11px 14px;
+      border-top: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    tr:hover td { background: #fafbfc; }
+
+    .stars { color: #f59e0b; letter-spacing: 1px; }
+
+    /* Path cards */
+    .path-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 14px;
+      margin: 16px 0;
+    }
+
+    .path-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      transition: box-shadow .2s, border-color .2s;
+    }
+
+    .path-card:hover {
+      box-shadow: var(--shadow);
+      border-color: var(--accent);
+    }
+
+    .path-card .rank {
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    .path-card h4 {
+      font-size: 1rem;
+      margin: 6px 0 8px;
+    }
+
+    .path-card .meta {
+      font-size: .82rem;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .path-card p {
+      font-size: .88rem;
+      margin: 0;
+      color: var(--text-secondary);
+    }
+
+    /* PM type cards */
+    .pm-types {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 16px 0;
+    }
+
+    @media (max-width: 640px) {
+      .pm-types { grid-template-columns: 1fr; }
+      .toc ol { columns: 1; }
+      section { padding: 20px 18px; }
+    }
+
+    .pm-type {
+      border-radius: 10px;
+      padding: 18px;
+      border: 1px solid var(--border);
+    }
+
+    .pm-type.toc { border-top: 3px solid #8b5cf6; }
+    .pm-type.tob { border-top: 3px solid #2563eb; }
+    .pm-type.strategy { border-top: 3px solid #059669; }
+    .pm-type.ai { border-top: 3px solid #dc2626; }
+
+    .pm-type h4 { font-size: .95rem; margin-bottom: 8px; }
+    .pm-type .essence { font-size: .85rem; color: var(--text-secondary); margin-bottom: 10px; }
+    .pm-type ul { margin: 0 0 0 18px; font-size: .85rem; }
+
+    /* Flowchart */
+    .flowchart {
+      margin: 24px 0;
+      padding: 20px;
+      background: #f8fafc;
+      border-radius: 12px;
+      overflow-x: auto;
+    }
+
+    .flow-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+      margin: 8px 0;
+    }
+
+    .flow-node {
+      background: var(--surface);
+      border: 2px solid var(--accent);
+      border-radius: 10px;
+      padding: 12px 18px;
+      text-align: center;
+      font-size: .88rem;
+      font-weight: 600;
+      min-width: 140px;
+      box-shadow: 0 2px 6px rgba(37,99,235,.1);
+    }
+
+    .flow-node.highlight {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent-dark);
+    }
+
+    .flow-node.small {
+      font-size: .8rem;
+      font-weight: 500;
+      min-width: 120px;
+      padding: 10px 14px;
+      border-color: #93c5fd;
+    }
+
+    .flow-arrow {
+      color: var(--accent);
+      font-size: 1.4rem;
+      padding: 0 6px;
+      flex-shrink: 0;
+    }
+
+    .flow-arrow-down {
+      text-align: center;
+      color: var(--accent);
+      font-size: 1.5rem;
+      line-height: 1;
+      margin: 4px 0;
+    }
+
+    .flow-branch {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin: 8px 0;
+    }
+
+    .flow-connector {
+      width: 2px;
+      height: 20px;
+      background: var(--accent);
+      margin: 0 auto;
+    }
+
+    /* Timeline */
+    .timeline { margin: 20px 0; }
+
+    .phase {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 0 20px;
+      margin-bottom: 0;
+      position: relative;
+    }
+
+    .phase:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 49px;
+      top: 48px;
+      bottom: 0;
+      width: 2px;
+      background: #dbeafe;
+    }
+
+    .phase-label {
+      text-align: right;
+      padding-top: 14px;
+    }
+
+    .phase-label .week {
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: block;
+    }
+
+    .phase-label .name {
+      font-size: .85rem;
+      color: var(--text-secondary);
+    }
+
+    .phase-content {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+    }
+
+    .phase-content h4 {
+      font-size: .95rem;
+      margin-bottom: 8px;
+      color: var(--accent-dark);
+    }
+
+    .phase-content ul { margin-bottom: 0; font-size: .9rem; }
+
+    /* Learning stack */
+    .stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 16px 0;
+    }
+
+    .stack-layer {
+      padding: 16px 20px;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    .stack-layer:first-child { border-radius: 10px 10px 0 0; }
+    .stack-layer:last-child { border-radius: 0 0 10px 10px; }
+
+    .stack-layer:nth-child(1) { background: #eff6ff; border-left: 4px solid #2563eb; }
+    .stack-layer:nth-child(2) { background: #f0fdf4; border-left: 4px solid #059669; }
+    .stack-layer:nth-child(3) { background: #fffbeb; border-left: 4px solid #d97706; }
+    .stack-layer:nth-child(4) { background: #fef2f2; border-left: 4px solid #dc2626; }
+
+    .stack-layer h4 { font-size: .9rem; margin-bottom: 4px; }
+    .stack-layer p { font-size: .85rem; margin: 0; color: var(--text-secondary); }
+
+    /* Priority list */
+    .priority-list {
+      list-style: none;
+      margin: 16px 0;
+      padding: 0;
+    }
+
+    .priority-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 10px;
+      background: var(--surface);
+    }
+
+    .priority-list .badge {
+      background: var(--accent);
+      color: #fff;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .82rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .priority-list .badge.gold { background: #d97706; }
+
+    /* Self-test */
+    .test-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 16px 0;
+    }
+
+    @media (max-width: 640px) { .test-grid { grid-template-columns: 1fr; } }
+
+    .test-group {
+      background: #f8fafc;
+      border-radius: 10px;
+      padding: 16px;
+      border: 1px solid var(--border);
+    }
+
+    .test-group h4 {
+      font-size: .9rem;
+      margin-bottom: 10px;
+      color: var(--accent-dark);
+    }
+
+    .test-item {
+      font-size: .85rem;
+      padding: 6px 0;
+      border-bottom: 1px dashed var(--border);
+      display: flex;
+      gap: 8px;
+    }
+
+    .test-item:last-child { border-bottom: none; }
+    .test-item .q-num { color: var(--accent); font-weight: 600; flex-shrink: 0; }
+
+    /* Decision matrix */
+    .matrix {
+      margin: 16px 0;
+    }
+
+    .matrix-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 640px) { .matrix-row { grid-template-columns: 1fr; } }
+
+    .matrix-cell {
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: .88rem;
+    }
+
+    .matrix-cell.if { background: #f1f5f9; font-weight: 600; }
+    .matrix-cell.then { background: var(--accent-light); color: var(--accent-dark); }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-secondary);
+      font-size: .85rem;
+    }
+
+    .checklist {
+      list-style: none;
+      margin: 12px 0;
+      padding: 0;
+    }
+
+    .checklist li {
+      padding: 8px 0 8px 28px;
+      position: relative;
+      font-size: .9rem;
+    }
+
+    .checklist li::before {
+      content: '☐';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>转行产品经理 · 系统操作手册</h1>
+  <p class="subtitle">武大硕士 · 1 年工作经验 · 2026 市场版<br>选路径 → 补能力 → 做项目 → 精准投递</p>
+  <div class="tags">
+    <span class="tag">路径选择</span>
+    <span class="tag">方向决策</span>
+    <span class="tag">90 天计划</span>
+    <span class="tag">AI 产品</span>
+    <span class="tag">低垂果实</span>
+  </div>
+</header>
+
+<div class="container">
+
+  <nav class="toc">
+    <h2>目录</h2>
+    <ol>
+      <li><a href="#s1">核心判断</a></li>
+      <li><a href="#s2">六条主路径</a></li>
+      <li><a href="#s3">自我诊断</a></li>
+      <li><a href="#s4">方向选择</a></li>
+      <li><a href="#s5">学习路线</a></li>
+      <li><a href="#s6">90 天手册</a></li>
+      <li><a href="#s7">脱颖而出</a></li>
+      <li><a href="#s8">总路线图</a></li>
+      <li><a href="#s9">三条建议</a></li>
+    </ol>
+  </nav>
+
+  <!-- Section 1 -->
+  <section id="s1">
+    <h2><span class="num">1</span>核心判断</h2>
+    <p>以你的背景（武大硕士 + 1 年工作经验），<strong>完全有机会转 PM</strong>。但 2026 年的现实是：</p>
+
+    <div class="callout callout-amber">
+      <strong>市场变了</strong>
+      纯「零基础 + 裸辞 + 报班 + 背面试题」成功率在下降。市场更认：能证明做过产品判断、推动过结果、懂某个垂直场景的人。
+    </div>
+
+    <div class="callout callout-blue">
+      <strong>最大误区</strong>
+      先学画原型、学编程、刷题——而不是先搞清楚「我凭什么做 PM」。
+    </div>
+
+    <div class="callout callout-green">
+      <strong>最优策略</strong>
+      选路径 → 补最小能力集 → 用 1–2 个真实项目证明能力 → 精准投递
+    </div>
+  </section>
+
+  <!-- Section 2 -->
+  <section id="s2">
+    <h2><span class="num">2</span>六条主路径（按「走得顺」排序）</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>路径</th>
+            <th>适合谁</th>
+            <th>难度</th>
+            <th>周期</th>
+            <th>说明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>① 公司内部转岗</strong></td>
+            <td>已在互联网/产品相关公司</td>
+            <td><span class="stars">⭐</span> 最低</td>
+            <td>3–6 月</td>
+            <td>最顺的路。先当「影子 PM」：写需求、跟项目、做数据分析</td>
+          </tr>
+          <tr>
+            <td><strong>② 邻近岗位过渡</strong></td>
+            <td>运营 / 数据分析 / 项目 / 实施</td>
+            <td><span class="stars">⭐⭐</span></td>
+            <td>6–12 月</td>
+            <td>很多 PM 从这里来。先转产品运营 / 数据 PM / 项目 PM</td>
+          </tr>
+          <tr>
+            <td><strong>③ 垂直行业 PM</strong></td>
+            <td>有行业积累（金融/医疗/制造等）</td>
+            <td><span class="stars">⭐⭐</span></td>
+            <td>6–12 月</td>
+            <td><strong>低垂果实</strong>：行业 Know-How + 产品能力，竞争小</td>
+          </tr>
+          <tr>
+            <td><strong>④ AI 产品 / Agent</strong></td>
+            <td>学习力强、愿意用 AI 做 MVP</td>
+            <td><span class="stars">⭐⭐⭐</span></td>
+            <td>6–9 月</td>
+            <td>2026 红利赛道。不要求传统 PM 履历，但要能交付原型</td>
+          </tr>
+          <tr>
+            <td><strong>⑤ 中小厂首个 PM</strong></td>
+            <td>敢承担、能接受不确定性</td>
+            <td><span class="stars">⭐⭐⭐</span></td>
+            <td>3–6 月</td>
+            <td>门槛相对低，但公司质量参差，要会筛</td>
+          </tr>
+          <tr>
+            <td><strong>⑥ 大厂社招</strong></td>
+            <td>履历 + 项目都强</td>
+            <td><span class="stars">⭐⭐⭐⭐⭐</span></td>
+            <td>12–18 月</td>
+            <td>1 年经验直接冲大厂 PM 很难，通常要作品集 + 相关经验</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout callout-green">
+      <strong>对你最可能「走得更顺」的组合</strong>
+      路径 ② 或 ③ + 路径 ④ 的元素 → 用现有工作积累「行业/业务/数据」优势 → 补产品方法论 → 做 1 个 AI 驱动的 side project → 投垂直赛道或 AI 原生团队
+    </div>
+
+    <h3>路径难度可视化</h3>
+    <div class="path-grid">
+      <div class="path-card">
+        <div class="rank">路径 ① · 最推荐</div>
+        <h4>公司内部转岗</h4>
+        <div class="meta">难度 ⭐ · 周期 3–6 月</div>
+        <p>成本最低、信任最高。在熟悉业务的基础上积累 PM 履历。</p>
+      </div>
+      <div class="path-card">
+        <div class="rank">路径 ②</div>
+        <h4>邻近岗位过渡</h4>
+        <div class="meta">难度 ⭐⭐ · 周期 6–12 月</div>
+        <p>运营、数据、项目岗离 PM 最近，能力迁移自然。</p>
+      </div>
+      <div class="path-card">
+        <div class="rank">路径 ③ · 低垂果实</div>
+        <h4>垂直行业 PM</h4>
+        <div class="meta">难度 ⭐⭐ · 周期 6–12 月</div>
+        <p>行业壁垒 = 你的护城河，竞争远小于通用 PM。</p>
+      </div>
+      <div class="path-card">
+        <div class="rank">路径 ④ · 2026 红利</div>
+        <h4>AI 产品 PM</h4>
+        <div class="meta">难度 ⭐⭐⭐ · 周期 6–9 月</div>
+        <p>能自己 demo 的人极稀缺，不完全卡传统 PM 年限。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3 -->
+  <section id="s3">
+    <h2><span class="num">3</span>怎么找到最适合你的路：15 分钟自测</h2>
+    <p>回答下面 8 个问题，打分（1 = 完全不符合，5 = 非常符合）：</p>
+
+    <div class="test-grid">
+      <div class="test-group">
+        <h4>A. 能力侧（你已有的）</h4>
+        <div class="test-item"><span class="q-num">1.</span> 我做过需求分析、写文档、推动多方协作落地</div>
+        <div class="test-item"><span class="q-num">2.</span> 我看过数据，能得出业务结论</div>
+        <div class="test-item"><span class="q-num">3.</span> 我了解某个行业/业务（哪怕只是当前公司这一块）</div>
+        <div class="test-item"><span class="q-num">4.</span> 我能把复杂问题讲清楚，说服同事或上级</div>
+      </div>
+      <div class="test-group">
+        <h4>B. 偏好侧（决定方向）</h4>
+        <div class="test-item"><span class="q-num">5.</span> 我喜欢快速看到用户反馈（偏 ToC / 增长）</div>
+        <div class="test-item"><span class="q-num">6.</span> 我喜欢深挖业务逻辑、跟客户/销售打交道（偏 ToB）</div>
+        <div class="test-item"><span class="q-num">7.</span> 我愿意持续学新技术（偏 AI 产品）</div>
+        <div class="test-item"><span class="q-num">8.</span> 我更看重稳定、长期积累，而非爆款和热点</div>
+      </div>
+    </div>
+
+    <h3>得分 → 方向映射</h3>
+    <div class="matrix">
+      <div class="matrix-row">
+        <div class="matrix-cell if">1–4 高，5 高</div>
+        <div class="matrix-cell then">→ ToC 功能 PM / 增长 PM / 用户体验 PM</div>
+      </div>
+      <div class="matrix-row">
+        <div class="matrix-cell if">1–4 高，6 高</div>
+        <div class="matrix-cell then">→ ToB SaaS PM / 行业解决方案 PM</div>
+      </div>
+      <div class="matrix-row">
+        <div class="matrix-cell if">1–4 高，5 + 7 高</div>
+        <div class="matrix-cell then">→ 策略 PM（推荐/搜索/风控）或 AI ToC</div>
+      </div>
+      <div class="matrix-row">
+        <div class="matrix-cell if">3 + 6 高</div>
+        <div class="matrix-cell then">→ <strong>垂直行业 ToB PM（优先选，竞争最小）</strong></div>
+      </div>
+      <div class="matrix-row">
+        <div class="matrix-cell if">7 高，4 一般</div>
+        <div class="matrix-cell then">→ AI 应用 PM / Agent PM（靠项目说话）</div>
+      </div>
+      <div class="matrix-row">
+        <div class="matrix-cell if">1–4 都低</div>
+        <div class="matrix-cell then">→ 先不裸辞，用 3 个月在当前岗位「模拟 PM」</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4 -->
+  <section id="s4">
+    <h2><span class="num">4</span>产品经理方向怎么选</h2>
+    <p>不要先选「哪种 PM 最火」，先选「哪种 PM 最需要你已有的东西」。</p>
+
+    <div class="pm-types">
+      <div class="pm-type toc">
+        <h4>ToC 产品 PM</h4>
+        <p class="essence">本质：解决个人用户的体验、留存、增长</p>
+        <ul>
+          <li>要求：用户洞察、快速迭代、数据敏感</li>
+          <li>2026 现实：流量红利没了，纯 ToC 入门岗位少、卷</li>
+          <li>适合：运营/增长/设计背景、对 UX 有感觉</li>
+        </ul>
+      </div>
+      <div class="pm-type tob">
+        <h4>ToB / SaaS 产品 PM</h4>
+        <p class="essence">本质：帮企业降本增效，卖的是 ROI</p>
+        <ul>
+          <li>要求：业务建模、客户沟通、复杂流程</li>
+          <li>2026 现实：<strong>转行相对友好</strong>，尤其垂直 SaaS、AI+行业</li>
+          <li>适合：逻辑强、有行业经验、不喜欢追热点</li>
+        </ul>
+      </div>
+      <div class="pm-type strategy">
+        <h4>策略产品 PM</h4>
+        <p class="essence">本质：用规则和模型做「系统级决策」</p>
+        <ul>
+          <li>推荐 / 搜索 / 广告 / 风控 / 定价</li>
+          <li>要求：强数据、A/B 实验、指标拆解</li>
+          <li>适合：数学/统计/数据分析背景</li>
+        </ul>
+      </div>
+      <div class="pm-type ai">
+        <h4>AI 产品 PM ⭐ 2026</h4>
+        <p class="essence">本质：把大模型/Agent 变成可交付、可评估的产品</p>
+        <ul>
+          <li>要求：Prompt/RAG/Agent 认知 + 场景判断</li>
+          <li>现实：愿意要「能自己做出 demo 的人」</li>
+          <li>适合：学习快、好奇、愿意用 AI 工具做 MVP</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>方向优先级建议（武大硕士 + 1 年经验）</h3>
+    <ol class="priority-list" style="list-style:none;padding:0;">
+      <li><span class="badge gold">1</span><div><strong>垂直 ToB / AI+行业</strong>（若有行业积累）— 竞争最小</div></li>
+      <li><span class="badge gold">2</span><div><strong>AI 应用 PM</strong>（用 side project 补履历）— 2026 红利</div></li>
+      <li><span class="badge">3</span><div><strong>数据 / 策略 PM</strong>（若当前工作偏数据）</div></li>
+      <li><span class="badge">4</span><div><strong>纯 ToC 功能 PM</strong>（除非有强 C 端感觉或运营经验）</div></li>
+    </ol>
+  </section>
+
+  <!-- Section 5 -->
+  <section id="s5">
+    <h2><span class="num">5</span>学什么？怎么学？</h2>
+
+    <div class="callout callout-amber">
+      <strong>现阶段不要学</strong>
+      深入编程 · 花 3 个月只学 Axure · 背 100 道面试题 · 买一堆课从头到尾看完
+    </div>
+
+    <h3>最小能力集（MVP 知识栈）</h3>
+    <div class="stack">
+      <div class="stack-layer">
+        <h4>第 1 层：产品思维（2–3 周）</h4>
+        <p>问题定义 · 优先级（RICE/MVP）· 商业闭环（谁付费、核心指标）</p>
+      </div>
+      <div class="stack-layer">
+        <h4>第 2 层：交付能力（2–3 周）</h4>
+        <p>PRD 结构 · 流程图/原型（Figma 够用）· 跟研发协作（API 思维、异常流程）</p>
+      </div>
+      <div class="stack-layer">
+        <h4>第 3 层：数据能力（持续）</h4>
+        <p>DAU/留存/转化/LTV/CAC/ROI · 漏斗分析 · cohort · 基础 SQL</p>
+      </div>
+      <div class="stack-layer">
+        <h4>第 4 层：2026 加分项</h4>
+        <p>Prompt · RAG · Agent 工作流 · 评估指标 · 用 AI 工具自己做小产品</p>
+      </div>
+    </div>
+
+    <h3>学习节奏（项目驱动）</h3>
+    <div class="flowchart">
+      <div class="flow-row">
+        <div class="flow-node">Week 1–2<br><small>拆解 3 个产品</small></div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-node">Week 3–4<br><small>学 PRD + 画原型</small></div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-node highlight">Week 5–8<br><small>做真实 Side Project</small></div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-node">Week 9–12<br><small>投递 + 复盘</small></div>
+      </div>
+    </div>
+
+    <h3>推荐资源（精选）</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>类型</th><th>推荐</th><th>用法</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>方法论</td><td>《启示录》《决胜 B 端》《增长黑客》</td><td>各读 1 本，边读边写笔记</td></tr>
+          <tr><td>案例</td><td>人人都是产品经理、少数派</td><td>每周拆解 1 个产品</td></tr>
+          <tr><td>工具</td><td>Figma、Notion、SQL 基础</td><td>够用就行</td></tr>
+          <tr><td>AI PM</td><td>吴恩达 AI for Everyone、大厂 AI 产品分享</td><td>建立认知，不追技术深度</td></tr>
+          <tr><td>实战</td><td><strong>自己做项目</strong></td><td>比任何课都重要</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Section 6 -->
+  <section id="s6">
+    <h2><span class="num">6</span>如果现在就想辞职：90 天系统操作手册</h2>
+
+    <h3>辞职前三问</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>问题</th><th>建议</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>存款能撑 6 个月吗？</td><td>转行平均 3–6 个月，保守按 6 个月算</td></tr>
+          <tr><td>当前工作还能「偷学」吗？</td><td>能的话别急着走，边干边转成功率高 2 倍</td></tr>
+          <tr><td>有没有 1 个能写进简历的垂直领域？</td><td>没有就先定一个</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout callout-blue">
+      <strong>裸辞决策</strong>
+      若「存款够 + 当前学不到 + 有垂直领域」→ 可考虑裸辞<br>
+      若「当前仍能偷学」→ <strong>强烈建议骑驴找马 3 个月</strong>
+    </div>
+
+    <h3>90 天四阶段</h3>
+    <div class="timeline">
+      <div class="phase">
+        <div class="phase-label">
+          <span class="week">第 1–7 天</span>
+          <span class="name">Phase 0</span>
+        </div>
+        <div class="phase-content">
+          <h4>定位 · 产出 3 份文档</h4>
+          <ul>
+            <li><strong>能力迁移表</strong>：过去 1 年 10 件事 → 对应 PM 哪项能力</li>
+            <li><strong>目标 JD 拆解</strong>：找 20 个 JD → 提炼 Top 15 要求 = 学习清单</li>
+            <li><strong>方向决策单</strong>：我选 ___ 方向，因为 ___</li>
+          </ul>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-label">
+          <span class="week">第 2–4 周</span>
+          <span class="name">Phase 1</span>
+        </div>
+        <div class="phase-content">
+          <h4>输入 · 每天 2–3 小时</h4>
+          <ul>
+            <li>30 min 读书/文章 · 60 min 拆解 1 个产品 · 60 min 学工具/写 PRD</li>
+            <li>完成 3 篇产品分析报告（公开发布 = 被动面试机会）</li>
+            <li>完成 1 份完整 PRD</li>
+          </ul>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-label">
+          <span class="week">第 5–10 周</span>
+          <span class="name">Phase 2</span>
+        </div>
+        <div class="phase-content">
+          <h4>实战 · 最关键阶段</h4>
+          <ul>
+            <li>做 1 个能 demo、能讲、能写进简历的项目</li>
+            <li>解决真实痛点 · 有 MVP · 有用户反馈或数据</li>
+            <li>作品集：背景 → 调研 → PRD → Demo → 数据 → 3 次迭代 → 反思</li>
+          </ul>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-label">
+          <span class="week">第 11–13 周</span>
+          <span class="name">Phase 3</span>
+        </div>
+        <div class="phase-content">
+          <h4>求职 · 精准投递</h4>
+          <ul>
+            <li>简历：核心项目放最前，每条用「问题 → 方案 → 结果」写</li>
+            <li>先投 30 家匹配度高的（垂直/AI/创业），不要先投大厂</li>
+            <li>准备 3 个 STAR 故事 + 1 个 product critique + 项目 demo</li>
+          </ul>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-label">
+          <span class="week">第 14 周+</span>
+          <span class="name">Phase 4</span>
+        </div>
+        <div class="phase-content">
+          <h4>迭代 · 每周节奏</h4>
+          <ul>
+            <li>5 投递 + 2 公开输出 + 1 次模拟面试</li>
+            <li>6 周 0 面试 → 改简历/方向 · 有面试无 offer → 改 storytelling</li>
+            <li>可考虑：产品助理 / 产品运营 / 项目经理先入职再转</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3>Side Project 低垂果实方向</h3>
+    <ul>
+      <li>某个垂直行业的 AI 助手（投放数据分析、合同审查、排班优化）</li>
+      <li>内部工具产品化（把前公司 Excel 流程做成小 SaaS）</li>
+      <li>某个 workflow 的 Agent（周报生成、竞品监控、客服话术）</li>
+    </ul>
+  </section>
+
+  <!-- Section 7 -->
+  <section id="s7">
+    <h2><span class="num">7</span>怎么脱颖而出：别人容易忽略的点</h2>
+
+    <div class="path-grid">
+      <div class="path-card">
+        <div class="rank">差异化 ①</div>
+        <h4>别做「通用 PM」</h4>
+        <p>做「懂 X 行业 + 会用 AI 做产品验证的 PM」。招聘方怕的是什么都不懂的新人。</p>
+      </div>
+      <div class="path-card">
+        <div class="rank">差异化 ②</div>
+        <h4>公开思考 &gt; 私密学习</h4>
+        <p>在即刻/知乎发产品分析。很多创始人会直接私信你，比海投效率高 10 倍。</p>
+      </div>
+      <div class="path-card">
+        <div class="rank">差异化 ③</div>
+        <h4>想法 → 原型 → 验证</h4>
+        <p>2026 PM 标准：自己用 Cursor/Replit/v0 做出能点的 demo。筛掉 80% 转行者。</p>
+      </div>
+      <div class="path-card">
+        <div class="rank">差异化 ④</div>
+        <h4>低垂果实赛道</h4>
+        <p>AI+垂直行业 · 出海产品 · 开发者/数据工具 · 20–50 人公司首个 PM</p>
+      </div>
+    </div>
+
+    <div class="callout callout-green">
+      <strong>武大硕士怎么用</strong>
+      不要只当学历标签 → 转化成：结构化思维、研究能力、快速学习、能写能讲。面试里体现你如何做 research、如何 framework 化问题。
+    </div>
+  </section>
+
+  <!-- Section 8 -->
+  <section id="s8">
+    <h2><span class="num">8</span>总路线图</h2>
+
+    <div class="flowchart">
+      <div class="flow-row">
+        <div class="flow-node highlight">自我诊断<br><small>能力 + 偏好 + 行业 · 1 周</small></div>
+      </div>
+      <div class="flow-arrow-down">↓</div>
+      <div class="flow-branch">
+        <div class="flow-node small">内部转岗<br><small>最顺</small></div>
+        <div class="flow-node small">邻近岗位过渡<br><small>6–12 月</small></div>
+        <div class="flow-node small">垂直 / AI PM<br><small>6–9 月</small></div>
+      </div>
+      <div class="flow-arrow-down">↓</div>
+      <div class="flow-row">
+        <div class="flow-node">最小能力集<br><small>思维 + PRD + 数据 + AI · 4 周</small></div>
+      </div>
+      <div class="flow-arrow-down">↓</div>
+      <div class="flow-row">
+        <div class="flow-node highlight">1 个真实项目<br><small>Demo + 数据 + 迭代 · 6 周</small></div>
+      </div>
+      <div class="flow-arrow-down">↓</div>
+      <div class="flow-row">
+        <div class="flow-node">公开输出 + 精准投递<br><small>30 家 → 复盘 → 迭代</small></div>
+      </div>
+      <div class="flow-arrow-down">↓</div>
+      <div class="flow-row">
+        <div class="flow-node highlight">产品助理 / 初级 PM<br><small>→ 1 年后跳更好</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 9 -->
+  <section id="s9">
+    <h2><span class="num">9</span>三条核心建议</h2>
+
+    <ol class="priority-list" style="list-style:none;padding:0;">
+      <li>
+        <span class="badge">1</span>
+        <div>
+          <strong>除非存款充裕且当前工作完全学不到东西，否则别立刻裸辞。</strong><br>
+          用 3 个月在当前岗位主动承担「产品式工作」，同时做 side project，成功率最高。
+        </div>
+      </li>
+      <li>
+        <span class="badge">2</span>
+        <div>
+          <strong>方向选择上，优先「你过去 1 年熟悉的业务 + AI/数据能力」。</strong><br>
+          而不是追纯 ToC 大厂 PM。这是 2026 年竞争最小、也最容易讲故事的组合。
+        </div>
+      </li>
+      <li>
+        <span class="badge">3</span>
+        <div>
+          <strong>第一个月只做两件事：</strong>写 3 篇产品分析报告 + 定 1 个 side project 题目。别急着买课。
+        </div>
+      </li>
+    </ol>
+
+    <h3>下一步：个性化定制清单</h3>
+    <p>补充以下 4 项信息，可进一步生成专属计划：</p>
+    <ul class="checklist">
+      <li>现在具体岗位和行业（数据/运营/研发/咨询…）</li>
+      <li>这 1 年工作里，最像 PM 的 2–3 件事</li>
+      <li>更偏 ToB 还是 ToC（或不确定）</li>
+      <li>是否必须裸辞，还是可骑驴找马</li>
+    </ul>
+  </section>
+
+</div>
+
+<footer>
+  转行产品经理 · 系统操作手册 · 2026 版 · 生成于 2026-08-22
+</footer>
+
+</body>
+</html>
