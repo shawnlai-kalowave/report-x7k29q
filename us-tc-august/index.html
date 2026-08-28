@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>美国tc非空8月付费提升分析</title>
+<style>
+:root{--bg:#f6f7f9;--paper:#fff;--ink:#18212f;--muted:#667085;--line:#e6e9ee;--blue:#315efb;--soft:#eef2ff;--green:#067647}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;line-height:1.72;font-size:15px}
+.page{max-width:1120px;margin:32px auto 72px;background:var(--paper);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.hero{padding:44px 56px 36px;background:#172033;color:#fff}.hero h1{margin:0 0 12px;font-size:30px}.hero p{color:#c9d2e3;max-width:920px}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.pill{border:1px solid #43506a;border-radius:999px;padding:5px 11px;font-size:12px}
+.content{padding:40px 56px 60px}h2{font-size:21px;margin:38px 0 13px;border-top:1px solid var(--line);padding-top:18px}
+.lead{font-size:18px;background:var(--soft);border-left:4px solid var(--blue);padding:17px 20px;border-radius:8px;margin-bottom:22px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0}.kpi{border:1px solid var(--line);border-radius:10px;padding:15px}.kpi b{display:block;font-size:21px;color:var(--blue)}.kpi span{color:var(--muted);font-size:12px}
+table{width:100%;border-collapse:collapse;border:1px solid var(--line);margin:15px 0;font-size:14px}th{background:#f3f5f8;text-align:left}th,td{padding:9px 12px;border-bottom:1px solid var(--line)}
+.figure{margin:20px 0;border:1px solid var(--line);border-radius:12px;overflow:hidden}.figure img{display:block;width:100%}.figure figcaption{padding:9px 12px;color:var(--muted);font-size:12px;border-top:1px solid var(--line)}
+.good{color:var(--green);font-weight:650}code{background:#f2f4f7;padding:2px 5px;border-radius:4px}li{margin:6px 0}.footer{padding:18px 56px;color:var(--muted);border-top:1px solid var(--line);font-size:12px}
+</style></head><body><main class="page">
+<header class="hero"><div>Task 003 · Country Growth</div>
+<h1>美国 tc 非空 8 月付费提升分析</h1>
+<p>8 月中旬（08/13–20）相对 8 月上旬付费率与金额显著抬升，几乎全部由 kdgausbrand 驱动；8/20 后从峰值回落，但高于上旬低谷。</p>
+<div class="pills"><span class="pill">20260801–20260827</span><span class="pill">核心对比 08/13–20 vs 08/05–12</span><span class="pill">配对等观察窗</span></div></header>
+<article class="content">
+<p class="lead"><b>结论：</b>付费率 3.50%→5.33%（p=0.0174），金额 $4,339→$7,552。kdgausbrand 付费率 3.41%→6.60%（p=0.0027）；排除 brand 后无显著变化（p=0.964）。广告在 8 月中旬大概率做对了，最明确的是 Google campaign <code>23910979100</code>。</p>
+<div class="kpis">
+<div class="kpi"><b>5.33%</b><span>8/13–20 付费率（前 3.50%）</span></div>
+<div class="kpi"><b>$7,552</b><span>8/13–20 净付费（+74.1%）</span></div>
+<div class="kpi"><b>p=0.0027</b><span>kdgausbrand 付费率差异</span></div>
+<div class="kpi"><b>4.49%</b><span>8/20–27 付费率（峰值 5.88%）</span></div></div>
+<h2>1. 核心对比：8/13–20 vs 8/05–12</h2>
+<table><thead><tr><th>指标</th><th>前8天</th><th>最近8天</th><th>变化</th></tr></thead><tbody>
+<tr><td>注册人数</td><td>1,370</td><td>1,539</td><td>+12.3%</td></tr>
+<tr><td>付费率</td><td>3.50%</td><td class="good">5.33%</td><td>+1.82pp</td></tr>
+<tr><td>净付费金额</td><td>$4,339</td><td class="good">$7,552</td><td>+74.1%</td></tr></tbody></table>
+<figure class="figure"><img src="images/01-period-compare.png"><figcaption>配对等观察窗下的注册、付费率、金额</figcaption></figure>
+<h2>2. 8 月结构：中旬脉冲，下旬回落</h2>
+<figure class="figure"><img src="images/02-rolling-rate.png"><figcaption>滚动8天付费率：8/13 起升，8/20 后回落</figcaption></figure>
+<figure class="figure"><img src="images/03-rolling-amount.png"><figcaption>滚动8天净付费金额</figcaption></figure>
+<h2>3. tc 归因：kdgausbrand，非全盘上涨</h2>
+<table><thead><tr><th>分组</th><th>08/05–12</th><th>08/13–20</th><th>检验</th></tr></thead><tbody>
+<tr><td><code>kdgausbrand</code></td><td>3.41% / $2,116</td><td>6.60% / $5,252</td><td class="good">p=0.0027</td></tr>
+<tr><td>排除 brand</td><td>3.65%</td><td>3.70%</td><td>p=0.964</td></tr></tbody></table>
+<figure class="figure"><img src="images/04-tc-contrib.png"><figcaption>brand tc 贡献主要金额增量</figcaption></figure>
+<figure class="figure"><img src="images/05-aug-weekly.png"><figcaption>8月自然周趋势</figcaption></figure>
+<h2>4. 广告做对了什么</h2>
+<p>kdgausbrand 对应 Google campaign <code>23910979100</code> / adgroup <code>197770302672</code> / content <code>811882949516</code>。量变少、率变多 → <strong>转化改善</strong>而非单纯买量。建议复盘 8/10–8/15 前后 Google Ads 变更。</p>
+</article><div class="footer">Source: Athena · 报告 2026-08-28</div></main></body></html>
