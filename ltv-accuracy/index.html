@@ -31,6 +31,8 @@ thead th{background:#eff6ff;color:#1e40af;font-weight:600;}
 .kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
 .kpi{background:#f8fafc;border-radius:8px;padding:10px;text-align:center;}
 .kpi .l{font-size:11px;color:var(--sub);} .kpi .v{font-size:20px;font-weight:700;color:var(--brand);margin-top:2px;}
+.note-box{background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin-top:16px;font-size:13px;color:#374151;line-height:1.75;}
+.note-box b{color:#1e40af;}
 footer{text-align:center;color:var(--sub);font-size:12px;margin-top:20px;}
 @media(max-width:720px){.kpi-grid{grid-template-columns:1fr;}}
 </style>
@@ -95,6 +97,11 @@ footer{text-align:center;color:var(--sub);font-size:12px;margin-top:20px;}
       <tr><td>泰国</td><td>26.7%</td><td>20.5%</td><td>+8.3%</td><td>+9.8%</td></tr>
     </tbody>
   </table>
+  <div class="note-box">
+    <p style="margin:0 0 10px;"><b>口径说明</b></p>
+    <p style="margin:0 0 8px;"><b>MAPE（平均绝对百分比误差）</b> = 各月 |预估值 − 实际值| ÷ 实际值 的平均值。只反映「差多少」，不区分偏高还是偏低。数值越小，预估越准。例如 MAPE 8.4% 表示平均大约差 8%。</p>
+    <p style="margin:0;"><b>平均偏差</b> = 各月 (预估值 − 实际值) ÷ 实际值 的平均值，<b>带正负号</b>。正数（如 +17%）表示整体<b>高估</b>；负数表示整体<b>低估</b>；接近 0 表示无明显系统性偏移。与 MAPE 配合看：MAPE 看误差大小，平均偏差看偏向哪边。</p>
+  </div>
 </section>
 
 
