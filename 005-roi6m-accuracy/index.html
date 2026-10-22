@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>005 预估 ROI(6m LTV) 准确性简报</title>
+<style>
+:root{--bg:#f4f6f9;--card:#fff;--ink:#1a1f36;--sub:#6b7280;--line:#e5e7eb;--brand:#2563eb;--green:#059669;--red:#dc2626;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;line-height:1.65;font-size:15px;}
+.wrap{max-width:960px;margin:0 auto;padding:36px 20px 72px;}
+header{background:linear-gradient(135deg,#1e3a8a,#2563eb);color:#fff;border-radius:16px;padding:36px 32px;margin-bottom:24px;}
+header h1{margin:0 0 10px;font-size:26px;}
+header .meta{font-size:13.5px;opacity:.92;line-height:1.9;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 28px;margin-bottom:22px;}
+.card h2{margin:0 0 8px;font-size:19px;color:#1e3a8a;}
+.muted{color:var(--sub);font-size:13.5px;margin:0 0 14px;}
+.chart img{max-width:100%;border:1px solid var(--line);border-radius:10px;}
+table{width:100%;border-collapse:collapse;font-size:13.5px;}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:right;}
+th:first-child,td:first-child{text-align:left;}
+thead th{background:#eff6ff;color:#1e40af;}
+.up{color:var(--red);font-weight:600;} .down{color:var(--green);font-weight:600;} .flat{color:var(--sub);}
+.kpi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.country-block{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;}
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
+.kpi{background:#f8fafc;border-radius:8px;padding:10px;text-align:center;}
+.kpi .l{font-size:11px;color:var(--sub);} .kpi .v{font-size:20px;font-weight:700;color:var(--brand);}
+.note-box{background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:14px 18px;font-size:13px;line-height:1.75;}
+footer{text-align:center;color:var(--sub);font-size:12px;margin-top:20px;}
+</style>
+</head>
+<body><div class="wrap">
+<header>
+  <h1>005 预估 ROI(6m LTV) vs 实际 · 准确性简报</h1>
+  <div class="meta">
+    <div>国家：美国、印尼、越南、泰国 ｜ Cohort：2025-10 ~ 2026-03（月末 21 天窗口快照）</div>
+    <div>预估算法：005 周报代码二（历史 -17~-11 月 ratio6 × 渠道占比加权） ｜ 生成：2026-10-22</div>
+    <div>ROI(6m LTV) = 6 个月净收入 ÷ t-21 投放消耗（202602/603 周报表校准消耗/付费比，外推其余月份）</div>
+  </div>
+</header>
+<section class="card">
+  <h2>四国误差速览</h2>
+  <div class="kpi-grid">
+        <div class="country-block">
+          <h3>美国</h3>
+          <div class="kpis">
+            <div class="kpi"><div class="l">6m ROI MAPE</div><div class="v">5.4%</div></div>
+            <div class="kpi"><div class="l">平均偏差</div><div class="v">+5.3%</div></div>
+          </div>
+        </div>
+        <div class="country-block">
+          <h3>印尼</h3>
+          <div class="kpis">
+            <div class="kpi"><div class="l">6m ROI MAPE</div><div class="v">13.9%</div></div>
+            <div class="kpi"><div class="l">平均偏差</div><div class="v">+6.8%</div></div>
+          </div>
+        </div>
+        <div class="country-block">
+          <h3>越南</h3>
+          <div class="kpis">
+            <div class="kpi"><div class="l">6m ROI MAPE</div><div class="v">20.2%</div></div>
+            <div class="kpi"><div class="l">平均偏差</div><div class="v">+10.5%</div></div>
+          </div>
+        </div>
+        <div class="country-block">
+          <h3>泰国</h3>
+          <div class="kpis">
+            <div class="kpi"><div class="l">6m ROI MAPE</div><div class="v">21.1%</div></div>
+            <div class="kpi"><div class="l">平均偏差</div><div class="v">+14.9%</div></div>
+          </div>
+        </div></div>
+  <table>
+    <thead><tr><th>国家</th><th>6m ROI MAPE</th><th>平均偏差</th></tr></thead>
+    <tbody><tr><td>美国</td><td>5.4%</td><td>+5.3%</td></tr><tr><td>印尼</td><td>13.9%</td><td>+6.8%</td></tr><tr><td>越南</td><td>20.2%</td><td>+10.5%</td></tr><tr><td>泰国</td><td>21.1%</td><td>+14.9%</td></tr></tbody>
+  </table>
+  <div class="note-box">
+    <p><b>MAPE</b> = 各月 |预估值 − 实际值| ÷ 实际值 的平均。<b>平均偏差</b> 带符号：正=整体高估 ROI，负=低估。</p>
+    <p>取数拆两步：① 一次预计算 hist 月段 ratio6 缓存；② 批量 21d cohort 加权，避免重复跑 6 遍完整代码二。</p>
+  </div>
+</section>
+
+    <section class="card">
+      <h2>美国 · 预估 vs 实际 ROI（6个月 LTV）</h2>
+      <p class="muted">对比窗口：2025-10 ~ 2026-03 ｜ MAPE：<b>5.4%</b> ｜ 平均偏差：<b>+5.3%</b></p>
+      <div class="chart"><img src="assets/美国_roi6m.png" alt="美国"></div>
+      <table>
+        <thead><tr><th>Cohort月</th><th>实际 ROI</th><th>预估 ROI</th><th>差异</th></tr></thead>
+        <tbody><tr><td>2025-10</td><td>3.73</td><td>4.08</td><td class="up">+9.1%</td></tr><tr><td>2025-11</td><td>3.95</td><td>3.94</td><td class="flat">-0.2%</td></tr><tr><td>2025-12</td><td>3.97</td><td>4.12</td><td class="flat">+3.8%</td></tr><tr><td>2026-01</td><td>3.85</td><td>4.16</td><td class="up">+8.1%</td></tr><tr><td>2026-02</td><td>3.77</td><td>4.06</td><td class="up">+7.9%</td></tr><tr><td>2026-03</td><td>3.86</td><td>3.98</td><td class="flat">+3.3%</td></tr></tbody>
+      </table>
+    </section>
+    <section class="card">
+      <h2>印尼 · 预估 vs 实际 ROI（6个月 LTV）</h2>
+      <p class="muted">对比窗口：2025-10 ~ 2026-03 ｜ MAPE：<b>13.9%</b> ｜ 平均偏差：<b>+6.8%</b></p>
+      <div class="chart"><img src="assets/印度尼西亚_roi6m.png" alt="印尼"></div>
+      <table>
+        <thead><tr><th>Cohort月</th><th>实际 ROI</th><th>预估 ROI</th><th>差异</th></tr></thead>
+        <tbody><tr><td>2025-10</td><td>1.69</td><td>1.94</td><td class="up">+14.8%</td></tr><tr><td>2025-11</td><td>1.97</td><td>2.03</td><td class="flat">+3.3%</td></tr><tr><td>2025-12</td><td>1.81</td><td>1.97</td><td class="up">+8.7%</td></tr><tr><td>2026-01</td><td>1.41</td><td>1.91</td><td class="up">+35.2%</td></tr><tr><td>2026-02</td><td>1.98</td><td>1.87</td><td class="down">-5.2%</td></tr><tr><td>2026-03</td><td>2.23</td><td>1.87</td><td class="down">-16.1%</td></tr></tbody>
+      </table>
+    </section>
+    <section class="card">
+      <h2>越南 · 预估 vs 实际 ROI（6个月 LTV）</h2>
+      <p class="muted">对比窗口：2025-10 ~ 2026-03 ｜ MAPE：<b>20.2%</b> ｜ 平均偏差：<b>+10.5%</b></p>
+      <div class="chart"><img src="assets/越南_roi6m.png" alt="越南"></div>
+      <table>
+        <thead><tr><th>Cohort月</th><th>实际 ROI</th><th>预估 ROI</th><th>差异</th></tr></thead>
+        <tbody><tr><td>2025-10</td><td>1.61</td><td>1.56</td><td class="flat">-3.0%</td></tr><tr><td>2025-11</td><td>1.71</td><td>1.61</td><td class="down">-6.0%</td></tr><tr><td>2025-12</td><td>1.38</td><td>2.11</td><td class="up">+52.9%</td></tr><tr><td>2026-01</td><td>1.79</td><td>2.18</td><td class="up">+22.0%</td></tr><tr><td>2026-02</td><td>2.75</td><td>2.20</td><td class="down">-20.1%</td></tr><tr><td>2026-03</td><td>1.85</td><td>2.17</td><td class="up">+17.5%</td></tr></tbody>
+      </table>
+    </section>
+    <section class="card">
+      <h2>泰国 · 预估 vs 实际 ROI（6个月 LTV）</h2>
+      <p class="muted">对比窗口：2025-10 ~ 2026-03 ｜ MAPE：<b>21.1%</b> ｜ 平均偏差：<b>+14.9%</b></p>
+      <div class="chart"><img src="assets/泰国_roi6m.png" alt="泰国"></div>
+      <table>
+        <thead><tr><th>Cohort月</th><th>实际 ROI</th><th>预估 ROI</th><th>差异</th></tr></thead>
+        <tbody><tr><td>2025-10</td><td>1.70</td><td>1.82</td><td class="up">+7.0%</td></tr><tr><td>2025-11</td><td>1.10</td><td>1.85</td><td class="up">+68.9%</td></tr><tr><td>2025-12</td><td>2.40</td><td>2.01</td><td class="down">-16.1%</td></tr><tr><td>2026-01</td><td>2.09</td><td>2.04</td><td class="flat">-2.4%</td></tr><tr><td>2026-02</td><td>1.67</td><td>1.98</td><td class="up">+18.8%</td></tr><tr><td>2026-03</td><td>1.78</td><td>2.02</td><td class="up">+13.2%</td></tr></tbody>
+      </table>
+    </section>
+<footer>005 Kalodata 周报口径 ｜ ads_order_all_di ｜ 内部使用</footer>
+</div></body></html>
