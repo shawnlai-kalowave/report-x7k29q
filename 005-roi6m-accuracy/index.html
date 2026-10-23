@@ -35,8 +35,8 @@ footer{text-align:center;color:var(--sub);font-size:12px;margin-top:20px;}
   <h1>005 预估 ROI(6m LTV) vs 实际 · 准确性简报</h1>
   <div class="meta">
     <div>国家：美国、印尼、越南、泰国 ｜ Cohort：2025-10 ~ 2026-03（月末 21 天窗口快照）</div>
-    <div>预估算法：005 周报代码二（历史 -17~-11 月 ratio6 × 渠道占比加权） ｜ 生成：2026-10-22</div>
-    <div>ROI(6m LTV) = 6 个月净收入 ÷ t-21 投放消耗（202602/603 周报表校准消耗/付费比，外推其余月份）</div>
+    <div>预估算法：005 周报代码二（历史 -17~-11 月 ratio6 × 渠道占比加权） ｜ 生成：2026-10-23</div>
+    <div>ROI(6m LTV) = 6 个月净收入 ÷ t-21 投放消耗（来源：草稿存档/四国花费 日耗汇总）</div>
   </div>
 </header>
 <section class="card">
@@ -76,7 +76,7 @@ footer{text-align:center;color:var(--sub);font-size:12px;margin-top:20px;}
   </table>
   <div class="note-box">
     <p><b>MAPE</b> = 各月 |预估值 − 实际值| ÷ 实际值 的平均。<b>平均偏差</b> 带符号：正=整体高估 ROI，负=低估。</p>
-    <p>取数拆两步：① 一次预计算 hist 月段 ratio6 缓存；② 批量 21d cohort 加权，避免重复跑 6 遍完整代码二。</p>
+    <p>取数：hist ratio6 缓存 + 21d cohort 加权；t-21 消耗来自四国日耗 Excel（/Users/mac/Desktop/工作/草稿存档/四国花费）。</p>
   </div>
 </section>
 
@@ -86,7 +86,7 @@ footer{text-align:center;color:var(--sub);font-size:12px;margin-top:20px;}
       <div class="chart"><img src="assets/美国_roi6m.png" alt="美国"></div>
       <table>
         <thead><tr><th>Cohort月</th><th>实际 ROI</th><th>预估 ROI</th><th>差异</th></tr></thead>
-        <tbody><tr><td>2025-10</td><td>3.73</td><td>4.08</td><td class="up">+9.1%</td></tr><tr><td>2025-11</td><td>3.95</td><td>3.94</td><td class="flat">-0.2%</td></tr><tr><td>2025-12</td><td>3.97</td><td>4.12</td><td class="flat">+3.8%</td></tr><tr><td>2026-01</td><td>3.85</td><td>4.16</td><td class="up">+8.1%</td></tr><tr><td>2026-02</td><td>3.77</td><td>4.06</td><td class="up">+7.9%</td></tr><tr><td>2026-03</td><td>3.86</td><td>3.98</td><td class="flat">+3.3%</td></tr></tbody>
+        <tbody><tr><td>2025-10</td><td>6.73</td><td>7.34</td><td class="up">+9.1%</td></tr><tr><td>2025-11</td><td>5.09</td><td>5.08</td><td class="flat">-0.2%</td></tr><tr><td>2025-12</td><td>5.35</td><td>5.56</td><td class="flat">+3.8%</td></tr><tr><td>2026-01</td><td>5.72</td><td>6.19</td><td class="up">+8.1%</td></tr><tr><td>2026-02</td><td>4.32</td><td>4.66</td><td class="up">+7.9%</td></tr><tr><td>2026-03</td><td>3.19</td><td>3.29</td><td class="flat">+3.3%</td></tr></tbody>
       </table>
     </section>
     <section class="card">
@@ -95,7 +95,7 @@ footer{text-align:center;color:var(--sub);font-size:12px;margin-top:20px;}
       <div class="chart"><img src="assets/印度尼西亚_roi6m.png" alt="印尼"></div>
       <table>
         <thead><tr><th>Cohort月</th><th>实际 ROI</th><th>预估 ROI</th><th>差异</th></tr></thead>
-        <tbody><tr><td>2025-10</td><td>1.69</td><td>1.94</td><td class="up">+14.8%</td></tr><tr><td>2025-11</td><td>1.97</td><td>2.03</td><td class="flat">+3.3%</td></tr><tr><td>2025-12</td><td>1.81</td><td>1.97</td><td class="up">+8.7%</td></tr><tr><td>2026-01</td><td>1.41</td><td>1.91</td><td class="up">+35.2%</td></tr><tr><td>2026-02</td><td>1.98</td><td>1.87</td><td class="down">-5.2%</td></tr><tr><td>2026-03</td><td>2.23</td><td>1.87</td><td class="down">-16.1%</td></tr></tbody>
+        <tbody><tr><td>2025-10</td><td>2.80</td><td>3.21</td><td class="up">+14.8%</td></tr><tr><td>2025-11</td><td>1.96</td><td>2.03</td><td class="flat">+3.3%</td></tr><tr><td>2025-12</td><td>2.10</td><td>2.28</td><td class="up">+8.7%</td></tr><tr><td>2026-01</td><td>2.50</td><td>3.38</td><td class="up">+35.2%</td></tr><tr><td>2026-02</td><td>1.95</td><td>1.85</td><td class="down">-5.2%</td></tr><tr><td>2026-03</td><td>2.26</td><td>1.90</td><td class="down">-16.1%</td></tr></tbody>
       </table>
     </section>
     <section class="card">
@@ -104,7 +104,7 @@ footer{text-align:center;color:var(--sub);font-size:12px;margin-top:20px;}
       <div class="chart"><img src="assets/越南_roi6m.png" alt="越南"></div>
       <table>
         <thead><tr><th>Cohort月</th><th>实际 ROI</th><th>预估 ROI</th><th>差异</th></tr></thead>
-        <tbody><tr><td>2025-10</td><td>1.61</td><td>1.56</td><td class="flat">-3.0%</td></tr><tr><td>2025-11</td><td>1.71</td><td>1.61</td><td class="down">-6.0%</td></tr><tr><td>2025-12</td><td>1.38</td><td>2.11</td><td class="up">+52.9%</td></tr><tr><td>2026-01</td><td>1.79</td><td>2.18</td><td class="up">+22.0%</td></tr><tr><td>2026-02</td><td>2.75</td><td>2.20</td><td class="down">-20.1%</td></tr><tr><td>2026-03</td><td>1.85</td><td>2.17</td><td class="up">+17.5%</td></tr></tbody>
+        <tbody><tr><td>2025-10</td><td>5.90</td><td>5.73</td><td class="flat">-3.0%</td></tr><tr><td>2025-11</td><td>3.30</td><td>3.10</td><td class="down">-6.0%</td></tr><tr><td>2025-12</td><td>3.53</td><td>5.40</td><td class="up">+52.9%</td></tr><tr><td>2026-01</td><td>2.47</td><td>3.01</td><td class="up">+22.0%</td></tr><tr><td>2026-02</td><td>1.64</td><td>1.31</td><td class="down">-20.1%</td></tr><tr><td>2026-03</td><td>5.20</td><td>6.11</td><td class="up">+17.5%</td></tr></tbody>
       </table>
     </section>
     <section class="card">
@@ -113,7 +113,7 @@ footer{text-align:center;color:var(--sub);font-size:12px;margin-top:20px;}
       <div class="chart"><img src="assets/泰国_roi6m.png" alt="泰国"></div>
       <table>
         <thead><tr><th>Cohort月</th><th>实际 ROI</th><th>预估 ROI</th><th>差异</th></tr></thead>
-        <tbody><tr><td>2025-10</td><td>1.70</td><td>1.82</td><td class="up">+7.0%</td></tr><tr><td>2025-11</td><td>1.10</td><td>1.85</td><td class="up">+68.9%</td></tr><tr><td>2025-12</td><td>2.40</td><td>2.01</td><td class="down">-16.1%</td></tr><tr><td>2026-01</td><td>2.09</td><td>2.04</td><td class="flat">-2.4%</td></tr><tr><td>2026-02</td><td>1.67</td><td>1.98</td><td class="up">+18.8%</td></tr><tr><td>2026-03</td><td>1.78</td><td>2.02</td><td class="up">+13.2%</td></tr></tbody>
+        <tbody><tr><td>2025-10</td><td>2.86</td><td>3.06</td><td class="up">+7.0%</td></tr><tr><td>2025-11</td><td>1.59</td><td>2.69</td><td class="up">+68.9%</td></tr><tr><td>2025-12</td><td>1.31</td><td>1.10</td><td class="down">-16.1%</td></tr><tr><td>2026-01</td><td>1.97</td><td>1.92</td><td class="flat">-2.4%</td></tr><tr><td>2026-02</td><td>1.39</td><td>1.65</td><td class="up">+18.8%</td></tr><tr><td>2026-03</td><td>3.01</td><td>3.40</td><td class="up">+13.2%</td></tr></tbody>
       </table>
     </section>
 <footer>005 Kalodata 周报口径 ｜ ads_order_all_di ｜ 内部使用</footer>
